@@ -6,21 +6,8 @@ $fa-font-path: "fonts/";
 
 @import "mixins";
 @import "fonts";
-
-html {
-    min-height: 100%;
-    position: relative;
-}
+@import "image-gallery";
 
 body {
-    margin-bottom: $footer-height;
+    font-family: "Raleway", sans-serif;
 }
-
-@import "scrollbar";
-@import "navbar";
-@import "footer";
-@import "portfolio";
-@import "about";
-@import "contact";
-@import "project-page";
-@import "image-gallery";
