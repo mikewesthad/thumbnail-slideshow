@@ -1,7 +1,5 @@
 module.exports = SlideshowModal;
 
-var utilities = require("./utilities.js");
-
 var KEY_CODES = {
     LEFT_ARROW: 37,
     RIGHT_ARROW: 39,
@@ -26,18 +24,22 @@ function SlideshowModal($container, slideshow) {
     this._$imageRight.on("click", this.advanceRight.bind(this));
     $(document).on("keydown", this._onKeyDown.bind(this));
 
+    // Give jQuery control over showing/hiding
+    this._$modal.css("display", "block");
+    this._$modal.hide();
+
+    // Events
+    $(window).on("resize", this._onResize.bind(this));
+    this._$overlay.on("click", this.close.bind(this));
+    this._$modal.find(".modal-close").on("click", this.close.bind(this));
+    
+    this._updateControls();
+
+    // Size of fontawesome icons needs a slight delay (until stack is clear) for
+    // some reason
     setTimeout(function () {
-        this._$modal.css("display", "block");
-        this._$modal.hide();
-
-        $(window).on("resize", this._onResize.bind(this));
         this._onResize();
-
-        this._updateControls();
-
-        this._$overlay.on("click", this.close.bind(this));
-        this._$modal.find(".modal-close").on("click", this.close.bind(this));
-    }.bind(this), 0)
+    }.bind(this), 0);
 }
 
 SlideshowModal.prototype.advanceLeft = function () {
@@ -121,7 +123,7 @@ SlideshowModal.prototype._onResize = function () {
         this._$imageRight.outerWidth(true);
     // Hack for now - budget for 2x the caption height. 
     var captionHeight = 2 * this._$caption.outerHeight(true); 
-    var imagePadding = $image.innerWidth()
+    var imagePadding = $image.innerWidth();
 
     // Calculate the available area for the modal
     var mw = this._$modal.width() - controlsWidth;

@@ -1,5 +1,4 @@
-var Slideshow = require("./thumbnail-slideshow.js");
-slideshow = new Slideshow();
+var slideshows = require("./slideshow.js");
+slideshows.init();
 
-objectFitImages();
-smartquotes();
+require("object-fit-images")();
