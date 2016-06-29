@@ -24,12 +24,11 @@
         right: 15px;
         font-size: 35px;
         cursor: pointer;
-        color: white;
-        opacity: 0.8;
-        transition: opacity 0.35s ease-in-out;
+        color: rgba(255, 255, 255, 0.75);
+        transition: color 0.35s ease-in-out;
 
         &:hover {
-            opacity: 1;
+            color: rgba(255, 255, 255, 1);
         }
     }
 
@@ -64,6 +63,7 @@
             cursor: pointer;
             color: rgba(255, 255, 255, 0.75);
             transition: color 0.35s ease-in-out;
+            padding: 25px 20px; // Expands clickable area
 
             &:hover {
                 color: rgba(255, 255, 255, 1);
@@ -77,13 +77,11 @@
         .image-advance-left {
             left: 0;
             transform: translate(-100%, -50%);
-            padding: 5px 20px 5px 0px; // Expands clickable area
         }
         
         .image-advance-right {
             right: 0;
             transform: translate(100%, -50%);
-            padding: 5px 0px 5px 20px; // Expands clickable area    
         }        
     }
 
@@ -115,11 +113,11 @@
             }
 
             .image-advance-left {
-                padding-right: 10px;
+                padding-right: 15px;
             }
             
             .image-advance-right {
-                padding-left: 10px;            
+                padding-left: 15px;            
             }
         }
 
@@ -224,10 +222,11 @@
             transform: translate(0, -50%);
             top: 50%;
             display: none;
-            font-size: 18px;
+            font-size: 20px;
             cursor: pointer;
             color: #999999;
             transition: color 0.35s ease-in-out;
+            padding: 30px 15px;
 
             &:hover {
                 color: #454545;
@@ -240,14 +239,12 @@
 
         .thumbnail-advance-left {
             left: 0;
-            padding: 5px 10px 5px 0px; // Expands clickable area
-            margin-right: 5px; // Non-clickable spacing
+            padding-left: 0;
         }
         
         .thumbnail-advance-right {
-            right: 0;
-            padding: 5px 0px 5px 10px; // Expands clickable area
-            margin-left: 5px; // Non-clickable spacing
+            right: 0;            
+            padding-right: 0;
         }
 
     }
@@ -261,9 +258,19 @@
         }
         .thumbnail-wrap {
             height: 70px;
-        }
-        .thumbnail-left, .thumbnail-right {
-            font-size: 14px;
+
+            .thumbnail-advance-left, .thumbnail-advance-right {
+                font-size: 16px;
+                padding: 20px 10px;
+            }
+
+            .thumbnail-advance-left {
+                padding-left: 0;
+            }
+            
+            .thumbnail-advance-right { 
+                padding-right: 0;
+            }
         }
     }
 
