@@ -153,6 +153,13 @@ ThumbnailSlider.prototype._onResize = function () {
     }
 
     this._numVisible = numThumbsVisible;
+    var middleIndex = Math.floor((this._numVisible - 1) / 2);
+    this._scrollBounds = {
+        min: middleIndex,
+        max: this._numImages - 1 - middleIndex
+    };
+    if (this._numVisible % 2 === 0) this._scrollBounds.max -= 1;
+
     this._updateThumbnailControls();
 };
 
@@ -164,20 +171,17 @@ ThumbnailSlider.prototype._activateThumbnail = function (index) {
 
 ThumbnailSlider.prototype._scrollToThumbnail = function (index) {
     // Constrain index so that we can't scroll out of bounds 
-    var midScrollIndex = Math.floor((this._numVisible - 1) / 2);
-    var minScrollIndex = midScrollIndex;
-    var maxScrollIndex = this._numImages - 1 - midScrollIndex;
-    index = Math.max(index, minScrollIndex);
-    index = Math.min(index, maxScrollIndex);
-
+    index = Math.max(index, this._scrollBounds.min);
+    index = Math.min(index, this._scrollBounds.max);
     this._scrollIndex = index;
-
+    
     // Find the "left" position of the thumbnail container that would put the 
     // thumbnail at index at the center
     var $thumb = this._$thumbnails[0];
     var size = parseFloat($thumb.css("width"));
     var margin = 2 * parseFloat($thumb.css("margin-right")); 
-    var centerX = size * midScrollIndex + margin * (midScrollIndex - 1);
+    var centerX = size * this._scrollBounds.min + 
+        margin * (this._scrollBounds.min - 1);
     var thumbX = size * index + margin * (index - 1);
     var left = centerX - thumbX;
 
@@ -212,9 +216,9 @@ ThumbnailSlider.prototype._updateThumbnailControls = function () {
     var midScrollIndex = Math.floor((this._numVisible - 1) / 2);
     var minScrollIndex = midScrollIndex;
     var maxScrollIndex = this._numImages - 1 - midScrollIndex;
-    if (this._scrollIndex >= maxScrollIndex) {
+    if (this._scrollIndex >= this._scrollBounds.max) {
         this._$advanceRight.addClass("disabled");
-    } else if (this._scrollIndex <= minScrollIndex) {
+    } else if (this._scrollIndex <= this._scrollBounds.min) {
         this._$advanceLeft.addClass("disabled");
     }
 };
