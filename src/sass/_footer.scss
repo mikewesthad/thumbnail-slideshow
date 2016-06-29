@@ -1,0 +1,66 @@
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: $footer-height;
+    text-align: center;
+
+    #border {
+        margin: 0 auto;
+        width: 50px;
+        border-top: 2px solid #D8D8D8;
+        margin-bottom: 4px;
+    }
+
+    #copywrite {
+        font-size: 13px;        
+        font-family: "Raleway", sans-serif;
+        color: #B0B0B0;
+        margin-bottom: 3px;
+    }
+
+    #contact-methods {
+        text-align: center;
+
+        .contact-method {
+            vertical-align: top;
+            display: inline-block;
+            margin: 0 2px;
+            text-align: center;
+            $base-icon-size: 16px;
+            font-size: $base-icon-size;
+            width: 25px;
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            background-color: #D8D8D8;
+            color: white;
+            border-radius: 50%;
+            transition: background-color 0.15s ease-in-out;
+
+            a, a:link, a:visited, a:hover, a:active {
+                color: white;
+            }
+            
+            &:hover {
+                background-color: $deep-purple;
+            }
+
+            &#email {
+                font-size: $base-icon-size * 0.75;
+            }
+
+            &#github {
+                font-size: $base-icon-size * 1;
+            }
+
+            &#twitter {
+                font-size: $base-icon-size * 0.95;
+            }
+
+            &#linkedin {
+                font-size: $base-icon-size * 0.85;
+            }
+        }
+    }
+}

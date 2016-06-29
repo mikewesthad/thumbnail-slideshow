@@ -1,0 +1,26 @@
+@import "variables";
+
+$fa-font-path: "fonts/";
+@import "font-awesome";
+@import "bootstrap";
+
+@import "mixins";
+@import "fonts";
+
+html {
+    min-height: 100%;
+    position: relative;
+}
+
+body {
+    margin-bottom: $footer-height;
+}
+
+@import "scrollbar";
+@import "navbar";
+@import "footer";
+@import "portfolio";
+@import "about";
+@import "contact";
+@import "project-page";
+@import "image-gallery";
