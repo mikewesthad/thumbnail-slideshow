@@ -112,12 +112,15 @@ SlideshowModal.prototype._updateControls = function () {
 SlideshowModal.prototype._onResize = function () {
     var $image = this._$imageContainer.find("img");
 
+    // Reset the content's width
+    this._$content.width("");
+
     // Find the size of the components that need to be displayed in addition to 
     // the image
     var controlsWidth = this._$imageLeft.outerWidth(true) + 
         this._$imageRight.outerWidth(true);
     // Hack for now - budget for 2x the caption height. 
-    var captionHeight = 3 * this._$caption.outerHeight(true); 
+    var captionHeight = 2 * this._$caption.outerHeight(true); 
     var imagePadding = $image.innerWidth()
 
     // Calculate the available area for the modal
@@ -140,7 +143,6 @@ SlideshowModal.prototype._onResize = function () {
             $image.css("width", iw + "px");
             $image.css("height", ih + "px");
         }
-
 
         this._$imageRight.css("top", $image.outerHeight() / 2 + "px");
         this._$imageLeft.css("top", $image.outerHeight() / 2 + "px");
